@@ -1,8 +1,11 @@
 make install:
 	npm install
 
+dev:
+	DEBUG=app* npm run nodemon -- --watch .  --ext '.js' --exec babel-node -- 'src/bin/start.js'
+
 start:
-	npx babel-node -- 'src/bin/start.js'
+	npx gulp run
 
 build:
 	rm -rf dist
