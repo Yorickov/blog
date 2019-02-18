@@ -27,8 +27,7 @@ export default (router, container) => {
       if (Object.keys(errors).length === 0) {
         const post = postsDbHandler.createPost(title, body);
         postsDbHandler.addPost(post);
-        res.redirect(`/posts/${post.id}`);
-        // const url = app.namedRoutes.build('posts#show', { id: post.id });
+        res.redirect(router.namedRoutes.build('posts#show', { id: post.id }));
         return;
       }
       res.status(422);
@@ -54,7 +53,7 @@ export default (router, container) => {
       if (Object.keys(errors).length === 0) {
         post.title = title;
         post.body = body;
-        res.redirect(`/posts/${post.id}/edit`);
+        res.redirect(router.namedRoutes.build('posts#show', { id: post.id }));
         return;
       }
 
@@ -62,7 +61,7 @@ export default (router, container) => {
       res.render('posts/edit', { post, form: req.body, errors });
     })
     .delete('/posts/:id', (req, res) => {
-      postsDbHandler.delPost(req.params.id);
-      res.redirect('/posts');
+      postsDbHandler.deletePost(req.params.id);
+      res.redirect(router.namedRoutes.build('posts#index'));
     });
 };

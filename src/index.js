@@ -5,7 +5,7 @@ import path from 'path';
 import Router from 'named-routes';
 import methodOverride from 'method-override';
 
-import addRoutes from './controllers';
+import addRoutes from './routes';
 import container from './container';
 
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
   app.set('view engine', 'pug');
   app.set('views', path.join(__dirname, './views'));
   // app.use('/assets', Express.static(process.env.NODE_PATH.split(':')[0]));
-  
+
   app.use('/assets', express.static(path.join(__dirname, 'public')));
   app.use(methodOverride('_method'));
 
