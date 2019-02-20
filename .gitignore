@@ -1,6 +1,5 @@
 /node_modules/
 *.log
-/public/
 .tern-port
 .idea
 coverage
