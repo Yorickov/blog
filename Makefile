@@ -2,13 +2,13 @@ make install:
 	npm install
 
 dev:
-	DEBUG=app* npm run nodemon -- --watch .  --ext '.js' --exec babel-node -- 'src/bin/start.js'
+	DEBUG=app* npm run nodemon -- --watch .  --ext '.js' --exec npm run gulp -- server
 
-start:
-	npx gulp run
+prod:
+	npm start
 
 build:
-	rm -rf dist
+	rm -rf public
 	npm run build
 
 test:
@@ -23,10 +23,7 @@ test-coverage:
 lint:
 	npx eslint .
 
-publish:
-	npm publish
-
 clean:
-	rm -rf dist
+	rm -rf public
 
 .PHONY: test

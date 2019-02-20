@@ -22,7 +22,7 @@ export default () => {
   app.set('views', path.join(__dirname, './views'));
   // app.use('/assets', Express.static(process.env.NODE_PATH.split(':')[0]));
 
-  app.use('/assets', express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, '..', 'public')));
   app.use(methodOverride('_method'));
 
   addRoutes(expressRouter, container);

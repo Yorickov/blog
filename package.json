@@ -13,11 +13,12 @@
     "dist"
   ],
   "scripts": {
+    "gulp": "gulp",
     "test": "jest",
-    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
-    "prepublishOnly": "npm run build",
-    "nodemon": "nodemon",
-    "gulp": "gulp"
+    "start": "NODE_ENV=production gulp server",
+    "build": "npx webpack -p --env production",
+    "postinstall": "npm run build",
+    "nodemon": "NODE_ENV=development nodemon"
   },
   "repository": {
     "type": "git",
@@ -42,25 +43,33 @@
   },
   "homepage": "https://github.com/Yorickov/blog#readme",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "gulp": "^4.0.0",
+    "jquery": "^3.3.1",
+    "jquery-ujs": "^1.2.2",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1",
     "named-routes": "^2.0.6",
+    "node-sass": "^4.11.0",
     "path": "^0.12.7",
+    "popper.js": "^1.14.7",
     "pug": "^2.0.3",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
+    "autoprefixer": "^9.4.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-babel": "^5.3.0",
@@ -69,8 +78,14 @@
     "eslint-plugin-lodash-fp": "^2.2.0-a1",
     "gulp-babel": "^8.0.0",
     "jest": "^24.0.0",
-    "jest-cli": "^24.0.0",
+    "jest-cli": "^24.1.0",
     "nodemon": "^1.18.9",
-    "supertest": "^3.4.2"
+    "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "supertest": "^3.4.2",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
   }
 }
