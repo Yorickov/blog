@@ -1,4 +1,5 @@
 node_modules
-dist
+public
 coverage
 __fixtures__
+__tests__
