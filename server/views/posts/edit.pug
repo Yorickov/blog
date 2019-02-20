@@ -1,8 +1,10 @@
 extends ../layouts/app.pug
 
 block content
-  .row.mt-3
-    .col-sm-6.mx-auto
-      h3.text-xs-center Edit '#{post.title}'
-      form(action=`/posts/${post.id}?_method=PATCH` method='post')
-        include _form.pug
+  .container.mt-5
+    .row
+      .col-sm-8.mx-auto
+        h3.text-center.mb-4 Edit '#{post.title}'
+        form(action=url('posts#update', { id: post.id }) method='post')
+          input(name='_method' type='hidden' value= 'PATCH')
+          include _form.pug

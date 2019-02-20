@@ -23,7 +23,12 @@ export default () => {
   // app.use('/assets', Express.static(process.env.NODE_PATH.split(':')[0]));
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
-  app.use(methodOverride('_method'));
+  app.use(methodOverride((req) => {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      return req.body._method; // eslint-disable-line
+    }
+    return null;
+  }));
 
   addRoutes(expressRouter, container);
   app.use(expressRouter);

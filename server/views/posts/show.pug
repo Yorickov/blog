@@ -1,7 +1,8 @@
 extends ../layouts/app.pug
 
 block content
-  div
-    a(href=url('root')) Main page
-  h3= post.title
-  = post.body
+  .container.mt-5
+    .row
+      .col
+        h3.text-center.mb-3= post.title
+        = post.body

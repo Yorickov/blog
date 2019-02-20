@@ -1,8 +1,12 @@
-doctype html
-html
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width initial-scale=1 shrink-to-fit=no")
-  body
-    div
-      h1 Welcome
+extends ../layouts/app.pug
+
+block content
+  .container.mt-5
+    h3.text-center Posts
+    if posts.length > 0
+      ul
+      for post in posts
+        .list-group
+          a.list-item(href=url('posts#show', { id: post.id }))= post.title
+    else
+      p Пусто

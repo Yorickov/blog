@@ -60,7 +60,7 @@ export default (router, container) => {
       res.status(422);
       res.render('posts/edit', { post, form: req.body, errors });
     })
-    .delete('/posts/:id', (req, res) => {
+    .delete('/posts/:id', 'posts#destroy', (req, res) => {
       postsDbHandler.deletePost(req.params.id);
       res.redirect(router.namedRoutes.build('posts#index'));
     });
