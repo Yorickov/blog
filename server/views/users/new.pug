@@ -1,0 +1,19 @@
+extends ../layouts/app.pug
+
+block content
+  container
+    .row.pt-5
+      .col-sm-4.mx-auto
+        form(action=url('users#create') method='post')
+          .row.form-group
+            .col-sm
+              input.form-control(name='nickname' placeholder='Nickname' value=form.nickname)
+              if errors.nickname
+                .text-warning= errors.nickname
+          .row.form-group
+            .col-sm
+              input.form-control(name='password' type='password' placeholder='Password')
+              if errors.password
+                .text-warning= errors.password
+          .form-group
+            button.btn.btn-success.btn-block(type='submit') Sign up

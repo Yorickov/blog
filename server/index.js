@@ -4,11 +4,14 @@ import morgan from 'morgan';
 import path from 'path';
 import Router from 'named-routes';
 import methodOverride from 'method-override';
+import session from 'express-session';
+
+import { uaParserMiddlware, flashFn } from './lib/middlwares';
 
 import addRoutes from './routes';
 import container from './container';
 
-import NotFoundError from './errors/NotFoundError.js';
+import NotFoundError from './lib/NotFoundError.js';
 
 export default () => {
   const app = express();
@@ -20,17 +23,35 @@ export default () => {
 
   app.use(morgan('short'));
   app.use(express.urlencoded({ extended: true }));
-  app.set('view engine', 'pug');
-  app.set('views', path.join(__dirname, './views'));
-  // app.use('/assets', Express.static(process.env.NODE_PATH.split(':')[0]));
-
-  app.use(express.static(path.join(__dirname, '..', 'public')));
   app.use(methodOverride((req) => {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
       return req.body._method; // eslint-disable-line
     }
     return null;
   }));
+
+  app.set('view engine', 'pug');
+  app.set('views', path.join(__dirname, './views'));
+
+  app.use(uaParserMiddlware);
+  app.use(session({
+    secret: 'secret key',
+    resave: false,
+    saveUninitialized: false,
+  }));
+  app.use(flashFn());
+
+  app.use(express.static(path.join(__dirname, '..', 'public')));
+  app.use((req, res, next) => {
+    if (req.session && req.session.nickname) {
+      const { nickname } = req.session;
+      res.locals.currentUser = container.usersDbHandler.getUsers()
+        .find(user => user.nickname === nickname);
+    } else {
+      res.locals.currentUser = container.usersDbHandler.addGuest();
+    }
+    next();
+  });
 
   addRoutes(expressRouter, container);
   app.use(expressRouter);

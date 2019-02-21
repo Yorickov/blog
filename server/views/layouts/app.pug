@@ -6,12 +6,27 @@ html(lang='en')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       a.navbar-brand(href=url('root')) Blog
-      button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
         span.navbar-toggler-icon
       .collapse.navbar-collapse#navbarSupportedContent
-        ul.navbar-nav.mr-auto
-          li.nav-item.active
-            a.nav-link(href=url('posts#new')) Write Post
-          li.nav-item
-            a.nav-link(href=url('posts#index')) My Posts
+        if currentUser.isGuest()
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link(href=url('session#new')) Sign in
+            li.nav-item
+              a.nav-link(href=url('users#new')) Sign up
+        else
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href=url('posts#index')) My Posts
+            li.nav-item
+              a.nav-link(href=url('posts#new')) Write Post
+            li.nav-item.ml-auto
+              a.nav-link(href=url('session#destroy') data-method='delete') Sign Out
+    .container
+      .mt-1
+        for message in flash
+          .alert(class=`alert-${message.type}`)
+            = message.message
+
     block content

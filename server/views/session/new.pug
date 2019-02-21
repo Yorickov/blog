@@ -1,0 +1,17 @@
+extends ../layouts/app.pug
+
+block content
+  .container
+    .row.pt-5
+      .col-sm-4.mx-auto
+        if error
+          .alert.alert-warning= error
+        form(action=url('session#create') method='post')
+          .row.form-group
+            .col-sm
+              input.form-control(name='nickname' placeholder='Nickname' value=form.nickname)
+          .row.form-group
+            .col-sm
+              input.form-control(name='password' type='password' placeholder='Password')
+          .form-group
+            button.btn.btn-primary.btn-block(type='submit') Log in

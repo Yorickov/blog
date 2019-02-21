@@ -18,10 +18,10 @@ export default (router, container) => {
       const errors = {};
 
       if (!title) {
-        errors.title = "Title can't be blank";
+        errors.title = "Can't be blank";
       }
       if (!body) {
-        errors.body = "Body can't be blank";
+        errors.body = "Can't be blank";
       }
 
       if (Object.keys(errors).length === 0) {
@@ -45,10 +45,10 @@ export default (router, container) => {
       const { title, body } = req.body;
       const errors = {};
       if (!title) {
-        errors.title = "Title can't be blank";
+        errors.title = "Can't be blank";
       }
       if (!body) {
-        errors.body = "Body can't be blank";
+        errors.body = "Can't be blank";
       }
       if (Object.keys(errors).length === 0) {
         post.title = title;
