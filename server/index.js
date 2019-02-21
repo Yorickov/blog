@@ -8,6 +8,8 @@ import methodOverride from 'method-override';
 import addRoutes from './routes';
 import container from './container';
 
+import NotFoundError from './errors/NotFoundError.js';
+
 export default () => {
   const app = express();
 
@@ -32,6 +34,16 @@ export default () => {
 
   addRoutes(expressRouter, container);
   app.use(expressRouter);
+
+  app.use((req, res, next) => next(new NotFoundError()));
+  app.use((err, req, res, next) => { // eslint-disable-line
+    res.status(err.status);
+    if (err.status === 404 || err.status === 403) {
+      res.render(`errors/${err.status}`);
+      return;
+    }
+    res.render('errors/500');
+  });
 
   return app;
 };

@@ -7,11 +7,12 @@
     "start": "dist/bin/start.js"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "files": [
     "dist"
   ],
+  "private": true,
   "scripts": {
     "gulp": "gulp",
     "test": "jest",
