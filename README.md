@@ -1,17 +1,18 @@
+# Website blog
+
 [![Build Status](https://travis-ci.org/Yorickov/blog.svg?branch=master)](https://travis-ci.org/Yorickov/blog)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6c96ccf20c3b40db6c12/maintainability)](https://codeclimate.com/github/Yorickov/blog/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6c96ccf20c3b40db6c12/test_coverage)](https://codeclimate.com/github/Yorickov/blog/test_coverage)
 
-# Website blog
+*Testing project - features of express-4 and environment, without database*
 
-### Back-End
-- nodejs
+### Features
 - Express
 - Pug
-
-### Front-End
+- name-routing
 - Bootstrap
+- gulp
 
 ### Testing
 - Jest
-- Supertest / Superagent
+- Supertest
